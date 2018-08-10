@@ -27,7 +27,7 @@ class TestBar < MiniTest::Test
 
   def test_bar_get_drinks_by_type
     @bar.add_drinks(@drinks)
-    assert_equal(2, @bar.get_drinks_by_type('Beer').length)
+    assert_equal(['Bud', 'Coors'], @bar.get_drinks_by_type('Beer'))
   end
 
   def test_bar_get_drink_by_name
