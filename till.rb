@@ -5,4 +5,11 @@ class Till
     @id = id
     @money = 0
   end
+
+  def take_payment(guest, amount)
+    if guest.wallet >= amount
+      guest.remove_money(amount)
+      @money += amount
+    end
+  end
 end
