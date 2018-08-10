@@ -24,4 +24,8 @@ class TestGuest < MiniTest::Test
   def test_guest_has_fav_song
     assert_equal(@song1, @guest1.fav_song)
   end
+
+  def test_guest_can_remove_money_from_wallet
+    assert_equal(17, @guest1.remove_money(3))
+  end
 end
