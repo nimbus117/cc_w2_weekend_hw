@@ -3,6 +3,8 @@ require('minitest/rg')
 require_relative('../drink')
 require_relative('../bar')
 require_relative('../till')
+require_relative('../guest')
+require_relative('../song')
 
 class TestBar < MiniTest::Test
 
@@ -14,6 +16,8 @@ class TestBar < MiniTest::Test
     @drinks = [drink1, drink2, drink3, drink4]
     till = Till.new('bar-room1')
     @bar = Bar.new(till)
+    @song1 = Song.new('Remedy', 'My Baby')
+    @guest1 = Guest.new('Bob', 20, @song1)
   end
 
   def test_bar_has_empty_till
@@ -33,6 +37,13 @@ class TestBar < MiniTest::Test
   def test_bar_get_drink_by_name
     @bar.add_drinks(@drinks)
     assert_equal(@drinks[3], @bar.get_drink_by_name('Glenmorangie'))
+  end
+
+  def test_bar_can_sell_drink
+    @bar.add_drinks(@drinks)
+    @bar.buy_drink(@guest1, @drinks[3])
+    assert_equal(5, @bar.till.money)
+    assert_equal(15, @guest1.wallet)
   end
 end
 
