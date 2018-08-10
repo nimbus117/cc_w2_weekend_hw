@@ -18,4 +18,8 @@ class Bar
   def get_drink_by_name(name)
     @drinks.find {|drink| drink.name == name}
   end
+
+  def buy_drink(guest, drink)
+    @till.take_payment(guest, drink.price)
+  end
 end
