@@ -13,4 +13,8 @@ class Bar
   def get_drinks_by_type(type)
     @drinks.find_all {|drink| drink.type == type}
   end
+
+  def get_drink_by_name(name)
+    @drinks.find {|drink| drink.name == name}
+  end
 end
