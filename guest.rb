@@ -10,4 +10,8 @@ class Guest
   def remove_money(amount)
     @wallet -= amount
   end
+
+  def check_for_fav_song(songs)
+    return 'Whoo!' if songs.include?(@fav_song)
+  end
 end
