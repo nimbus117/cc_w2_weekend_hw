@@ -24,4 +24,10 @@ class TestTill < MiniTest::Test
     assert_equal(5, @till1.money)
     assert_equal(15, @guest1.wallet)
   end
+
+  def test_till_does_not_take_payment
+    @till1.take_payment(@guest1, 50)
+    assert_equal(0, @till1.money)
+    assert_equal(20, @guest1.wallet)
+  end
 end
