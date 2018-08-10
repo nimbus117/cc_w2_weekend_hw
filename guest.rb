@@ -6,4 +6,8 @@ class Guest
     @wallet = wallet
     @fav_song = fav_song
   end
+
+  def remove_money(amount)
+    @wallet -= amount
+  end
 end
