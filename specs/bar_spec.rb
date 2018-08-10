@@ -19,5 +19,10 @@ class TestBar < MiniTest::Test
   def test_bar_has_empty_till
     assert_equal(0, @bar.till.money)
   end
+
+  def test_bar_can_add_drinks
+    @bar.add_drinks(@drinks)
+    assert_equal(4, @bar.drinks.length)
+  end
 end
 
