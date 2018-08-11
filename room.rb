@@ -7,4 +7,8 @@ class Room
     @songs = []
     @bar = bar
   end
+
+  def get_song_by_title(title)
+    @songs.find {|song| song.title == title}
+  end
 end
