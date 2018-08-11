@@ -59,4 +59,10 @@ class TestRoom < MiniTest::Test
     @room.guests.push(@guest1)
     assert_equal('Whoo!', @room.guests[0].check_for_fav_song(@room.songs))
   end
+
+  def test_get_song_by_title
+    @room.songs.push(@song1)
+    @room.songs.push(@song2)
+    assert_equal(@song1, @room.get_song_by_title('Remedy'))
+  end
 end
