@@ -67,4 +67,11 @@ class TestKaraokeBar < MiniTest::Test
     assert_equal(6, @karaoke_bar.rooms[0].guests.length)
     assert_equal(60, @karaoke_bar.till.money)
   end
+
+  def test_karaoke_bar_can_check_out_guest
+    @karaoke_bar.check_in_guest(@karaoke_bar.rooms[0], @guest1)
+    @karaoke_bar.check_in_guest(@karaoke_bar.rooms[0], @guest2)
+    @karaoke_bar.check_out_guest(@karaoke_bar.rooms[0], @guest1)
+    assert_equal(1, @karaoke_bar.rooms[0].guests.length)
+  end
 end
