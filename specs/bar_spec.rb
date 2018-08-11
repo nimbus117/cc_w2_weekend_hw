@@ -25,22 +25,22 @@ class TestBar < MiniTest::Test
   end
 
   def test_bar_can_add_drinks
-    @bar.add_drinks(@drinks)
+    @bar.drinks.concat(@drinks)
     assert_equal(4, @bar.drinks.length)
   end
 
   def test_bar_get_drinks_by_type
-    @bar.add_drinks(@drinks)
+    @bar.drinks.concat(@drinks)
     assert_equal(['Bud', 'Coors'], @bar.get_drinks_by_type('Beer'))
   end
 
   def test_bar_get_drink_by_name
-    @bar.add_drinks(@drinks)
+    @bar.drinks.concat(@drinks)
     assert_equal(@drinks[3], @bar.get_drink_by_name('Glenmorangie'))
   end
 
   def test_bar_can_sell_drink
-    @bar.add_drinks(@drinks)
+    @bar.drinks.concat(@drinks)
     @bar.buy_drink(@guest1, @drinks[3])
     assert_equal(5, @bar.till.money)
     assert_equal(15, @guest1.wallet)

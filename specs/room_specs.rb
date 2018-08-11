@@ -49,7 +49,7 @@ class TestRoom < MiniTest::Test
   end
 
   def test_room_has_working_bar
-    @room.bar.add_drinks(@drinks)
+    @room.bar.drinks.concat(@drinks)
     @room.bar.buy_drink(@guest1, @drinks[3])
     assert_equal(5, @room.bar.till.money)
     assert_equal(15, @guest1.wallet)
