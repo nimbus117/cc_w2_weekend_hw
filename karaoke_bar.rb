@@ -16,4 +16,8 @@ class KaraokeBar
       end
     end
   end
+
+  def check_out_guest(room, guest)
+    room.guests.delete(guest)
+  end
 end
