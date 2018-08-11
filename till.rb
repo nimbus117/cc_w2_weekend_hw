@@ -10,6 +10,8 @@ class Till
     if guest.wallet >= amount
       guest.remove_money(amount)
       @money += amount
+      return true
     end
+    return false
   end
 end
