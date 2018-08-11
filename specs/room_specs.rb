@@ -1,7 +1,7 @@
 require('minitest/autorun')
 require('minitest/rg')
 require_relative('../room')
-require_relative('../guests')
+require_relative('../guest')
 require_relative('../song')
 
 class TestRoom < MiniTest::Test
@@ -20,6 +20,6 @@ class TestRoom < MiniTest::Test
   def test_can_push_guests_to_room
     @room.guests.push(@guest1)
     @room.guests.push(@guest2)
-    assert_equal(2, @room.guests)
+    assert_equal(2, @room.guests.length)
   end
 end
