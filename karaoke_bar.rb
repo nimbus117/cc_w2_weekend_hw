@@ -11,7 +11,7 @@ class KaraokeBar
   def check_in_guest(room, guest)
     payment = @till.take_payment(guest, @price)
     if payment
-      room.push(guest)
+      room.guests.push(guest)
     end
   end
 end

@@ -43,27 +43,27 @@ class TestKaraokeBar < MiniTest::Test
   end
 
   def test_karaoke_bar_can_check_in_guest
-    @karaoke_bar.check_in_guest(@karaoke_bar.rooms[0].guests, @guest1)
+    @karaoke_bar.check_in_guest(@karaoke_bar.rooms[0], @guest1)
     assert_equal(10, @karaoke_bar.till.money)
     assert_equal(10, @guest1.wallet)
     assert_equal(1, @karaoke_bar.rooms[0].guests.length)
   end
 
   def test_karaoke_bar_can_check_in_guest__not_enough_money
-    @karaoke_bar.check_in_guest(@karaoke_bar.rooms[0].guests, @poor_guest)
+    @karaoke_bar.check_in_guest(@karaoke_bar.rooms[0], @poor_guest)
     assert_equal(0, @karaoke_bar.till.money)
     assert_equal(5, @poor_guest.wallet)
     assert_equal(0, @karaoke_bar.rooms[0].guests.length)
   end
 
   def test_karaoke_bar_can_check_in_guest__room_at_capacity
-    @karaoke_bar.check_in_guest(@karaoke_bar.rooms[0].guests, @guest1)
-    @karaoke_bar.check_in_guest(@karaoke_bar.rooms[0].guests, @guest2)
-    @karaoke_bar.check_in_guest(@karaoke_bar.rooms[0].guests, @guest3)
-    @karaoke_bar.check_in_guest(@karaoke_bar.rooms[0].guests, @guest4)
-    @karaoke_bar.check_in_guest(@karaoke_bar.rooms[0].guests, @guest5)
-    @karaoke_bar.check_in_guest(@karaoke_bar.rooms[0].guests, @guest6)
-    @karaoke_bar.check_in_guest(@karaoke_bar.rooms[0].guests, @guest7)
+    @karaoke_bar.check_in_guest(@karaoke_bar.rooms[0], @guest1)
+    @karaoke_bar.check_in_guest(@karaoke_bar.rooms[0], @guest2)
+    @karaoke_bar.check_in_guest(@karaoke_bar.rooms[0], @guest3)
+    @karaoke_bar.check_in_guest(@karaoke_bar.rooms[0], @guest4)
+    @karaoke_bar.check_in_guest(@karaoke_bar.rooms[0], @guest5)
+    @karaoke_bar.check_in_guest(@karaoke_bar.rooms[0], @guest6)
+    @karaoke_bar.check_in_guest(@karaoke_bar.rooms[0], @guest7)
     assert_equal(6, @karaoke_bar.rooms[0].guests.length)
     assert_equal(60, @karaoke_bar.till.money)
   end
