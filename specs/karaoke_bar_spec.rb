@@ -74,4 +74,22 @@ class TestKaraokeBar < MiniTest::Test
     @karaoke_bar.check_out_guest(@karaoke_bar.rooms[0], @guest1)
     assert_equal(1, @karaoke_bar.rooms[0].guests.length)
   end
+
+  def test_karaoke_bar_add_songs_to_all_rooms
+    song1 = Song.new('Remedy', 'My Baby')
+    song2 = Song.new('One', 'Metallica')
+    song3 = Song.new('Uprising', 'My Baby')
+    songs = [song1, song2, song3]
+    @karaoke_bar.add_songs_to_all_rooms(songs)
+    assert_equal(3, @karaoke_bar.rooms[0].songs.length)
+    assert_equal(3, @karaoke_bar.rooms[1].songs.length)
+  end
+
+#  def test_karaoke_bar_add_drinks_to_all_bars
+#
+#  end
+#
+#  def test_karaoke_bar_get_till_report
+#
+#  end
 end
