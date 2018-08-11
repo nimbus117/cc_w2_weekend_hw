@@ -9,9 +9,11 @@ class KaraokeBar
   end
 
   def check_in_guest(room, guest)
-    payment = @till.take_payment(guest, @price)
-    if payment
-      room.guests.push(guest)
+    if room.guests.length < room.capacity
+      payment = @till.take_payment(guest, @price)
+      if payment
+        room.guests.push(guest)
+      end
     end
   end
 end
