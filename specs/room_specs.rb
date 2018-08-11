@@ -22,4 +22,11 @@ class TestRoom < MiniTest::Test
     @room.guests.push(@guest2)
     assert_equal(2, @room.guests.length)
   end
+
+  def test_can_delete_guests_from_room
+    @room.guests.push(@guest1)
+    @room.guests.push(@guest2)
+    @room.guests.delete(@guest1)
+    assert_equal(1, @room.guests.length)
+  end
 end
