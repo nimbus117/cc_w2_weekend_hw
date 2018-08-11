@@ -20,4 +20,8 @@ class KaraokeBar
   def check_out_guest(room, guest)
     room.guests.delete(guest)
   end
+
+  def add_songs_to_all_rooms(songs)
+    rooms.each {|room| room.songs.concat(songs)}
+  end
 end
