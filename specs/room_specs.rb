@@ -53,4 +53,10 @@ class TestRoom < MiniTest::Test
     assert_equal(5, @room.bar.till.money)
     assert_equal(15, @guest1.wallet)
   end
+
+  def test_guest_can_check_if_room_has_fav_song
+    @room.songs.push(@song1)
+    @room.guests.push(@guest1)
+    assert_equal('Whoo!', @room.guests[0].check_for_fav_song(@room.songs))
+  end
 end
