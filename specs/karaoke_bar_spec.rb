@@ -14,7 +14,8 @@ class TestKaraokeBar < MiniTest::Test
     bar2 = Bar.new(till2)
     room2 = Room.new(bar2)
     rooms = [room1, room2]
-    @karaoke_bar = KaraokeBar.new('CodeClan Caraoke', rooms)
+    till3 = Till.new('front-desk')
+    @karaoke_bar = KaraokeBar.new('CodeClan Caraoke', rooms, till3)
   end
 
   def test_karaoke_bar_has_name
@@ -24,5 +25,9 @@ class TestKaraokeBar < MiniTest::Test
   def test_karaoke_bar_has_empty_rooms
     assert_equal(0, @karaoke_bar.rooms[0].guests.length)
     assert_equal(0, @karaoke_bar.rooms[1].guests.length)
+  end
+
+  def test_karaoke_bar_has_empty_till
+    assert_equal(0, @karaoke_bar.till.money)
   end
 end
