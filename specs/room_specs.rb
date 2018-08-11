@@ -9,6 +9,7 @@ class TestRoom < MiniTest::Test
   def setup
     @room = Room.new()
     @song1 = Song.new('Remedy', 'My Baby')
+    @song2 = Song.new('One', 'Metallica')
     @guest1 = Guest.new('Bob', 20, @song1)
     @guest2 = Guest.new('Sally', 20, @song1)
   end
@@ -29,4 +30,11 @@ class TestRoom < MiniTest::Test
     @room.guests.delete(@guest1)
     assert_equal(1, @room.guests.length)
   end
+
+  def test_can_push_songs_to_room
+    @room.songs.push(@song1)
+    @room.songs.push(@song2)
+    assert_equal(2, @room.songs.length)
+  end
+
 end
