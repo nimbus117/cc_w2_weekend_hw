@@ -2,7 +2,7 @@ require('minitest/autorun')
 require('minitest/rg')
 require_relative('../room')
 
-class TestRoom
+class TestRoom < MiniTest::Test
 
   def setup
     @room = Room.new()
