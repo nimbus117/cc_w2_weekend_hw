@@ -19,6 +19,7 @@ class TestKaraokeBar < MiniTest::Test
     till3 = Till.new('front-desk')
     @karaoke_bar = KaraokeBar.new('CodeClan Caraoke', rooms, till3)
     @song1 = Song.new('Remedy', 'My Baby')
+    @poor_guest = Guest.new('Tim', 5, @song1)
     @guest1 = Guest.new('Bob', 20, @song1)
   end
 
@@ -40,5 +41,12 @@ class TestKaraokeBar < MiniTest::Test
     assert_equal(10, @karaoke_bar.till.money)
     assert_equal(10, @guest1.wallet)
     assert_equal(1, @karaoke_bar.rooms[0].guests.length)
+  end
+
+  def test_karaoke_bar_can_check_in_guest__not_enough_money
+    @karaoke_bar.check_in_guest(@karaoke_bar.rooms[0].guests, @poor_guest)
+    assert_equal(0, @karaoke_bar.till.money)
+    assert_equal(5, @poor_guest.wallet)
+    assert_equal(0, @karaoke_bar.rooms[0].guests.length)
   end
 end
