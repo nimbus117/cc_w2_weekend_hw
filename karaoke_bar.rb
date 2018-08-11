@@ -24,4 +24,8 @@ class KaraokeBar
   def add_songs_to_all_rooms(songs)
     rooms.each {|room| room.songs.concat(songs)}
   end
+  
+  def add_drinks_to_all_bars(drinks)
+    @rooms.each {|room| room.bar.drinks.concat(drinks)}
+  end
 end
