@@ -20,6 +20,7 @@ class TestRoom < MiniTest::Test
     @room = Room.new(bar)
     @song1 = Song.new('Remedy', 'My Baby')
     @song2 = Song.new('One', 'Metallica')
+    @song3 = Song.new('Uprising', 'My Baby')
     @guest1 = Guest.new('Bob', 20, @song1)
     @guest2 = Guest.new('Sally', 20, @song1)
   end
@@ -64,5 +65,12 @@ class TestRoom < MiniTest::Test
     @room.songs.push(@song1)
     @room.songs.push(@song2)
     assert_equal(@song1, @room.get_song_by_title('Remedy'))
+  end
+
+  def test_get_songs_by_artist
+    @room.songs.push(@song1)
+    @room.songs.push(@song2)
+    @room.songs.push(@song3)
+    assert_equal([@song1, @song3], @room.get_songs_by_artist('My Baby')) 
   end
 end
