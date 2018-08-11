@@ -6,6 +6,7 @@ require_relative('../bar')
 require_relative('../till')
 require_relative('../guest')
 require_relative('../song')
+require_relative('../drink')
 
 class TestKaraokeBar < MiniTest::Test
   def setup
@@ -27,6 +28,11 @@ class TestKaraokeBar < MiniTest::Test
     @guest5 = Guest.new('Betty', 20, @song1)
     @guest6 = Guest.new('Bernadette', 20, @song1)
     @guest7 = Guest.new('Frank', 20, @song1)
+    drink1 = Drink.new('Bud', 'Beer', 3)
+    drink2 = Drink.new('Coors', 'Beer', 3)
+    drink3 = Drink.new('Bowmore', 'Whisky', 5)
+    drink4 = Drink.new('Glenmorangie', 'Whisky', 5)
+    @drinks = [drink1, drink2, drink3, drink4]
   end
 
   def test_karaoke_bar_has_name
@@ -85,10 +91,12 @@ class TestKaraokeBar < MiniTest::Test
     assert_equal(3, @karaoke_bar.rooms[1].songs.length)
   end
 
-#  def test_karaoke_bar_add_drinks_to_all_bars
-#
-#  end
-#
+  def test_karaoke_bar_add_drinks_to_all_bars
+    @karaoke_bar.add_drinks_to_all_bars(@drinks)
+    assert_equal(4, @karaoke_bar.rooms[0].bar.drinks.length)
+    assert_equal(4, @karaoke_bar.rooms[1].bar.drinks.length)
+  end
+
 #  def test_karaoke_bar_get_till_report
 #
 #  end
