@@ -3,11 +3,21 @@ require('minitest/rg')
 require_relative('../room')
 require_relative('../guest')
 require_relative('../song')
+require_relative('../drink')
+require_relative('../bar')
+require_relative('../till')
 
 class TestRoom < MiniTest::Test
 
   def setup
-    @room = Room.new()
+    drink1 = Drink.new('Bud', 'Beer', 3)
+    drink2 = Drink.new('Coors', 'Beer', 3)
+    drink3 = Drink.new('Bowmore', 'Whisky', 5)
+    drink4 = Drink.new('Glenmorangie', 'Whisky', 5)
+    @drinks = [drink1, drink2, drink3, drink4]
+    till = Till.new('bar-room1')
+    bar = Bar.new(till)
+    @room = Room.new(bar)
     @song1 = Song.new('Remedy', 'My Baby')
     @song2 = Song.new('One', 'Metallica')
     @guest1 = Guest.new('Bob', 20, @song1)
@@ -37,4 +47,10 @@ class TestRoom < MiniTest::Test
     assert_equal(2, @room.songs.length)
   end
 
+  def test_room_has_working_bar
+    @room.bar.add_drinks(@drinks)
+    @room.bar.buy_drink(@guest1, @drinks[3])
+    assert_equal(5, @room.bar.till.money)
+    assert_equal(15, @guest1.wallet)
+  end
 end
