@@ -4,6 +4,8 @@ require_relative('../karaoke_bar.rb')
 require_relative('../room')
 require_relative('../bar')
 require_relative('../till')
+require_relative('../guest')
+require_relative('../song')
 
 class TestKaraokeBar < MiniTest::Test
   def setup
@@ -16,6 +18,8 @@ class TestKaraokeBar < MiniTest::Test
     rooms = [room1, room2]
     till3 = Till.new('front-desk')
     @karaoke_bar = KaraokeBar.new('CodeClan Caraoke', rooms, till3)
+    @song1 = Song.new('Remedy', 'My Baby')
+    @guest1 = Guest.new('Bob', 20, @song1)
   end
 
   def test_karaoke_bar_has_name
@@ -29,5 +33,12 @@ class TestKaraokeBar < MiniTest::Test
 
   def test_karaoke_bar_has_empty_till
     assert_equal(0, @karaoke_bar.till.money)
+  end
+
+  def test_karaoke_bar_can_check_in_guest
+    @karaoke_bar.check_in_guest(@karaoke_bar.rooms[0].guests, @guest1)
+    assert_equal(10, @karaoke_bar.till.money)
+    assert_equal(10, @guest1.wallet)
+    assert_equal(1, @karaoke_bar.rooms[0].guests.length)
   end
 end
