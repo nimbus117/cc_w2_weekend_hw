@@ -97,7 +97,39 @@ class TestKaraokeBar < MiniTest::Test
     assert_equal(4, @karaoke_bar.rooms[1].bar.drinks.length)
   end
 
-#  def test_karaoke_bar_get_till_report
-#
-#  end
+  def test_karaoke_bar_get_till_report
+
+    expected_report = [
+      {
+        id: 'front-desk',
+        money: 70
+      },
+      {
+        id: 'bar-room1',
+        money: 5
+      },
+      {
+        id: 'bar-room2',
+        money: 3
+      },
+      {
+        id: 'total',
+        money: 78
+      }
+    ]
+    # check in guests to both rooms
+    @karaoke_bar.check_in_guest(@karaoke_bar.rooms[0], @guest1)
+    @karaoke_bar.check_in_guest(@karaoke_bar.rooms[0], @guest2)
+    @karaoke_bar.check_in_guest(@karaoke_bar.rooms[0], @guest3)
+    @karaoke_bar.check_in_guest(@karaoke_bar.rooms[0], @guest4)
+    @karaoke_bar.check_in_guest(@karaoke_bar.rooms[1], @guest5)
+    @karaoke_bar.check_in_guest(@karaoke_bar.rooms[1], @guest6)
+    @karaoke_bar.check_in_guest(@karaoke_bar.rooms[1], @guest7)
+    # add drinks to all rooms and have guests buy some
+    @karaoke_bar.add_drinks_to_all_bars(@drinks)
+    @karaoke_bar.rooms[0].bar.buy_drink(@guest1, @drinks[3])
+    @karaoke_bar.rooms[1].bar.buy_drink(@guest6, @drinks[0])
+
+    assert_equal(expected_report, @karaoke_bar.get_till_report())
+  end
 end
